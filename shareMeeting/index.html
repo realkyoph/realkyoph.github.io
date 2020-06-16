@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="format-detection" content="telephone=no,email=no,address=no">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>分享会</title>
+  <link href="css/pc.css" type="text/css" rel="stylesheet">
+  <script>
+  var dataArr = [
+      {
+        date: '2016.08.07',
+        author: '晓强',
+        ppt: '2016.08.07_知识体系与自我学习.pdf',
+        questionnaire: '//wj.qq.com/s/707673/5ad9',
+        score: '11.33',
+        amount: 3
+      },
+      {
+        date: '2016.08.21',
+        author: '静静',
+        ppt: '2016.08.21_关键对话.pdf',
+        questionnaire: '//wj.qq.com/s/747613/9bb9',
+        score: '22.67',
+        amount: 3
+      },
+      {
+        date: '2016.09.04',
+        author: '飞杰',
+        ppt: '2016.09.04_平行宇宙.pdf',
+        questionnaire: '//wj.qq.com/s/761623/1304',
+        score: '19.67',
+        amount: 3
+      },
+      {
+        date: '2016.09.25',
+        author: '晓强',
+        ppt: '2016.09.25_恐惧之源.pdf',
+        questionnaire: '//wj.qq.com/s/799976/f37a',
+        score: '20.67',
+        amount: 3
+      },
+      {
+        date: '2016.10.16',
+        author: '军军',
+        ppt: '2016.10.16_高效能人士的七个习惯.pdf',
+        questionnaire: '//wj.qq.com/s/822923/58b6',
+        score: '13.67',
+        amount: 3
+      },
+      {
+        date: '2016.11.06',
+        author: '静静',
+        ppt: '2016.11.06_自我接纳.pdf',
+        questionnaire: '//wj.qq.com/s/866919/ae9c',
+        score: '19.33',
+        amount: 3
+      },
+      {
+        date: '2016.11.20',
+        author: '强哥',
+        ppt: '2016.11.20_爱的艺术与消亡.pdf',
+        questionnaire: '//wj.qq.com/s/907031/16ce',
+        score: '21.67',
+        amount: 3
+      },
+      {
+        date: '2016.12.04',
+        author: '俊杰',
+        ppt: '2016.12.04_滑板之长板.pdf',
+        questionnaire: '//wj.qq.com/s/938382/cc3f',
+        score: '19',
+        amount: 1
+      },
+      {
+        date: '2016.12.11',
+        author: '飞杰',
+        ppt: '2016.12.11_帧.pdf',
+        questionnaire: '//wj.qq.com/s/959134/6d4f',
+        score: '18',
+        amount: 3
+      },
+      {
+        date: '2016.12.18',
+        author: '晓强',
+        ppt: '2016.12.18_数学、物理与动画（上）.pdf',
+        questionnaire: '//wj.qq.com/s/973619/422e',
+        score: '11.33',
+        amount: 3
+      },
+      {
+        date: '2016.12.25',
+        author: '军军',
+        ppt: '2016.12.25_如何利用图形进行辅助思考和交流.pdf',
+        questionnaire: '//wj.qq.com/s/985862/f4ae',
+        score: '20',
+        amount: 3
+      },
+      {
+        date: '2017.01.08',
+        author: '浩然',
+        ppt: '2017.01.08_从狼人杀到微表情.pdf',
+        questionnaire: '//wj.qq.com/s/1011495/598e',
+        score: '23.75',
+        amount: 4
+      },
+      {
+        date: '2017.01.15',
+        author: '静静',
+        ppt: '2017.01.15_男人来自火星，女人来自金星.pdf',
+        questionnaire: '//wj.qq.com/s/1034099/043c',
+        score: '23.8',
+        amount: 5
+      },
+      {
+        date: '2017.02.12',
+        author: '座谈会',
+        ppt: '2017.02.12_HR谈面试.png',
+        questionnaire: '',
+        score: '',
+        amount: 0
+      }
+    ],
+    scoreObj = {},  //统计数据（对象）
+    scoreArr = []  //统计数据（按时间顺序的数组）
+  </script>
+</head>
+<body>
+
+  <h3>
+    分享内容：
+    <a href="//wj.qq.com/s/1034128/7f28">分享会KPI</a>
+  </h3>
+
+  <div class="j-share"></div>
+
+  <hr>
+
+  <div class="j-person"></div>
+
+  <script id="j-tpl-share" type="text/template">
+  <ol class="m-share">
+    <%for(var i = 0; i < arr.length; i++){%>
+    <li>
+      <%if(arr[i].ppt){%>
+      <p>
+        演示稿：
+        <a href="ppt/<%=arr[i].ppt%>">《<%=arr[i].ppt.slice(arr[i].ppt.indexOf('_')+1, arr[i].ppt.indexOf('.pdf') > 0 ? arr[i].ppt.indexOf('.pdf') :
+                                      (arr[i].ppt.indexOf('.png') > 0 ? arr[i].ppt.indexOf('.png') : 0))%>》</a>
+      </p>
+      <%}%>
+
+      <p>
+        分享者：
+        <span>
+                <%if(arr[i].author){%>
+                    <%=arr[i].author%>
+                <%} else {%>
+                    无名
+                <%}%>
+                </span>
+      </p>
+
+      <%if(arr[i].date){%>
+      <p>
+        时&emsp;间：
+        <%=arr[i].date%>
+      </p>
+      <%}%>
+
+      <%if(arr[i].score || arr[i].questionnaire){%>
+      <p>
+        <%if(arr[i].score){%>
+        平均分：
+        <span>
+                    <%=arr[i].score%>
+                </span>
+        <%}%>
+
+        <%if(arr[i].questionnaire){%>
+        <a href="<%=arr[i].questionnaire%>">[问卷地址]</a>
+        <%}%>
+
+        <%if(arr[i].amount){%>
+        （<%=arr[i].amount%>人评论）
+        <%}%>
+      </p>
+      <%}%>
+    </li>
+    <%}%>
+  </ol>
+  </script>
+  <script id="j-tpl-person" type="text/template">
+  <table class="m-person">
+    <tr>
+      <th>分享者</th>
+      <th>总分（累加）</th>
+      <th>次数</th>
+    </tr>
+    <%for(var i = 0, len = arr2.length; i < len; i++){%>
+    <tr>
+      <td><%=arr2[i].name%></td>
+      <td><%=arr2[i].scores%></td>
+      <td><%=arr2[i].times%></td>
+    </tr>
+    <%}%>
+  </table>
+  </script>
+
+  <script src="js/jquery.min.3.2.1.js"></script>
+  <script src="js/baiduTemplate.min.js"></script>
+  <script>
+  /* 通用方法*/
+  var generalObj = {
+    /* 四则运算*/
+    fourOperations: {
+      add: function (arg1, arg2) {    /* 加*/
+        var r1, r2, m, c, cm,
+          int1 = Number(arg1.toString().replace('.', '')),
+          int2 = Number(arg2.toString().replace('.', ''))
+
+        try {
+          r1 = arg1.toString().split('.')[1].length
+        } catch (e) {
+          r1 = 0
+        }
+        try {
+          r2 = arg2.toString().split('.')[1].length
+        } catch (e) {
+          r2 = 0
+        }
+
+        c = Math.abs(r1 - r2)
+        m = Math.pow(10, Math.max(r1, r2))
+
+        if (c > 0) {
+          cm = Math.pow(10, c)
+
+          if (r1 > r2) {
+            int2 = int2 * cm
+          } else {
+            int1 = int1 * cm
+          }
+        }
+
+        return (int1 + int2) / m
+      },
+      sub: function (arg1, arg2) {    /* 减*/
+
+        return this.add(arg1, -arg2)
+      },
+      mul: function (arg1, arg2) {    /* 乘*/
+        var m
+
+        try {
+          m = arg1.toString().split('.')[1].length
+        } catch (e) {
+          m = 0
+        }
+        try {
+          m = m + arg2.toString().split('.')[1].length
+        } catch (e) {
+
+        }
+
+        return Number(arg1.toString().replace('.', '')) * Number(arg2.toString().replace('.', '')) / Math.pow(10, m)
+      },
+      div: function (arg1, arg2) {    /* 除*/
+        var r1, r2
+
+        try {
+          r1 = arg1.toString().split('.')[1].length
+        } catch (e) {
+          r1 = 0
+        }
+        try {
+          r2 = arg2.toString().split('.')[1].length
+        } catch (e) {
+          r2 = 0
+        }
+
+        return (Number(arg1.toString().replace('.', '')) / Number(arg2.toString().replace('.', ''))) * Math.pow(10, r2 - r1)
+      }
+    },
+
+    init: function () {
+
+    }
+  }
+
+  generalObj.init()
+  </script>
+  <script>
+  $(function () {
+    /* 展示源数据*/
+    $('.j-share').append(baidu.template('j-tpl-share', { arr: dataArr }))
+
+    /* 生成统计数据对象（新数据先计算）*/
+    for (var i = dataArr.length - 1, order = 0, oneAuthor; i >= 0; i--) {
+      oneAuthor = dataArr[i].author
+      if (!oneAuthor) {
+        oneAuthor = '无名'
+      }
+
+      if (typeof scoreObj[oneAuthor] === 'undefined') {
+        scoreObj[oneAuthor] = {
+          times: 0,   //分享次数
+          scores: 0,  //分享总分
+          order: order    //分享顺序（最新分享的为0，次新分享的为1）
+        }
+        order += 1
+      }
+
+      scoreObj[oneAuthor].scores = generalObj.fourOperations.add((parseFloat(dataArr[i].score) || 0), scoreObj[oneAuthor].scores)
+      scoreObj[oneAuthor].times += 1
+    }
+
+    /* 生成按时间顺序的统计数据数组*/
+    for (var j in scoreObj) {
+      scoreArr[scoreObj[j].order] = {
+        name: j,
+        times: scoreObj[j].times,
+        scores: scoreObj[j].scores || '--'
+      }
+    }
+
+    /* 展示统计（最新10个参与者数据）*/
+    $('.j-person').append(baidu.template('j-tpl-person', { arr2: scoreArr.slice(0, 10) }))
+  })
+  </script>
+
+
+  <!-- 视差插件-->
+  <ul class="m-parallax" id="j-parallax">
+    <li class="layer i-1" data-depth="8.00">脸</li>
+    <li class="layer i-2" data-depth="8.70">左眉</li>
+    <li class="layer i-3" data-depth="8.65">右眉</li>
+    <li class="layer i-4" data-depth="8.78">左眼</li>
+    <li class="layer i-5" data-depth="8.75">右眼</li>
+    <li class="layer i-6" data-depth="8.80">左珠</li>
+    <li class="layer i-7" data-depth="8.78">右珠</li>
+    <li class="layer i-8" data-depth="8.90">鼻子</li>
+    <li class="layer i-9" data-depth="8.60">嘴巴</li>
+  </ul>
+  <script type="text/javascript" src="js/jquery.parallax.min.js"></script>
+  <script type="text/javascript">
+  $(function () {
+    $('#j-parallax').parallax({
+      invertX: true,
+      invertY: false,
+      scalarY: 16
+    }).show()
+  })
+  </script>
+</body>
+</html>
